@@ -1,0 +1,123 @@
+﻿<Window x:Class="di.prueba.parejas.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:di.prueba.parejas"
+        xmlns:mat="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d" Background="Transparent" WindowStartupLocation="CenterScreen"
+        WindowStyle="None" AllowsTransparency="True" 
+        Title="MainWindow" Height="450" Width="800">
+    
+    <Border CornerRadius="10" BorderThickness="1">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#6D2FFF" Offset="0" />
+                <GradientStop Color="#FB539B" Offset="0.5" />
+                <GradientStop Color="#836EFB" Offset="1" />
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0" >
+                <GradientStop Color="#060531" Offset="0" />
+                <GradientStop Color="#1B1448" Offset="1" />
+            </LinearGradientBrush>
+        </Border.Background>
+        <DockPanel>
+            <Border DockPanel.Dock="Left" Width="250" CornerRadius="10,0,0,10">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0.7">
+                        <GradientStop Color="#29105F" Offset="1" />
+                        <GradientStop Color="#210F55" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <!-- Parte Izquierda -->
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Height="100">
+                        <Image Source="Iconos/stock.png" Margin="10" Width="25"/>
+                        <TextBlock Text="CALCULADORA PALLETS" VerticalAlignment="Center" Foreground="White" FontSize="15"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border CornerRadius="10,0,0,10">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0.7">
+                        <GradientStop Color="#0A003A" Offset="1" />
+                        <GradientStop Color="#1C0C49" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,5,0" FlowDirection="RightToLeft" Background="Transparent">
+                        <Button Background="Transparent" BorderBrush="Transparent" x:Name="btnCerrar" Click="btnCerrar_Click">
+                            <Image Source="/Iconos/x.png" Margin="2" />
+                        </Button>
+                        <Button Background="Transparent" BorderBrush="Transparent" Margin="10,0,0,0" >
+                            <Image Source="/Iconos/max.png" Margin="4" />
+                        </Button>
+                        <Button Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Bottom"
+                                Margin="10,0,0,2" Height="20" >
+                            <Image Source="/Iconos/min.png"  />
+                        </Button>
+                    </StackPanel>
+                    <!-- Parte Superior -->
+                    <Grid Grid.Row="1">
+                        <StackPanel Margin="10,0" Orientation="Horizontal">
+                            <Image Source="/Iconos/homeblanco.png" />
+                            <TextBlock Text="INICIO" Foreground="White" FontSize="20" VerticalAlignment="Center" Margin="10"/>
+                        </StackPanel>
+                    </Grid>
+                    <!-- Parte Central -->
+                    <ContentControl Grid.Row="2" Margin="20" Background="#29105F">
+                        <Grid>
+
+                            <Grid Background="#290F55">
+                                <!-- Controles para ingresar los datos del pallet y caja -->
+                                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <StackPanel Orientation="Horizontal" Margin="10">
+                                        <TextBlock Text="Largo pallet: " Foreground="White"/>
+                                        <xctk:IntegerUpDown x:Name="txtLargoPallet" Minimum="0" Maximum="300" Value="100" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal"  Margin="10">
+                                        <TextBlock Text="Ancho pallet: " Foreground="White"/>
+                                        <xctk:IntegerUpDown x:Name="txtAnchoPallet" Minimum="0" Maximum="300" Value="100" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="10">
+                                        <TextBlock Text="Alto pallet: " Foreground="White"/>
+                                        <xctk:IntegerUpDown x:Name="txtAltoPallet" Minimum="0" Maximum="300" Value="100" />
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="10">
+                                        <TextBlock Text="Largo caja: " Foreground="White"/>
+                                        <xctk:IntegerUpDown x:Name="txtLargoCaja" Minimum="0" Maximum="300" Value="0" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="10">
+                                        <TextBlock Text="Ancho caja: " Foreground="White"/>
+                                        <xctk:IntegerUpDown x:Name="txtAnchoCaja" Minimum="0" Maximum="300" Value="0" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="10">
+                                        <TextBlock Text="Alto caja: " Foreground="White"/>
+                                        <xctk:IntegerUpDown x:Name="txtAltoCaja" Minimum="0" Maximum="300" Value="0" />
+                                    </StackPanel>
+
+                                    <!-- Botón Calcular y TextBlock de Resultado -->
+                                    <Button Content="CALCULAR" Click="btnCalcular_Click" Margin="0,10"/>
+                                    <TextBlock x:Name="txtResultado" Foreground="White" FontSize="16" Margin="0,10,0,0" TextAlignment="Center"/>
+                                </StackPanel>
+                            </Grid>
+
+
+
+                        </Grid>
+                    </ContentControl>
+                </Grid>
+            </Border>
+        </DockPanel>
+    </Border>
+</Window>
